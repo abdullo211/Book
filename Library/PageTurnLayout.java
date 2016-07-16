@@ -156,6 +156,7 @@ public class PageTurnLayout extends FrameLayout {
 
                             if (mDirection == PageTurnDirection.RIGHT)
                                 mCurrentPage--;
+                            activity.savePageNumber();
                             activity.adapter.info.thisPage.setText("" + (mCurrentPage + 1));
                             activity.adapter.info.changePageBar.setProgress(mCurrentPage);
                             mDirection = null;
@@ -178,6 +179,7 @@ public class PageTurnLayout extends FrameLayout {
 
                             if (mDirection == PageTurnDirection.LEFT)
                                 mCurrentPage++;
+                            activity.savePageNumber();
                             activity.adapter.info.thisPage.setText("" + (mCurrentPage + 1));
                             activity.adapter.info.changePageBar.setProgress(mCurrentPage);
 
@@ -236,7 +238,7 @@ public class PageTurnLayout extends FrameLayout {
             // clip and draw the top page to your touch
 
             canvas.clipRect(mTopViewRect);
-            canvas.drawColor(Color.BLACK);
+
             topView.draw(canvas);
             canvas.restore();
 

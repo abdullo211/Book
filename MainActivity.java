@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         pager.setOffscreenPageLimit(4);
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
+        shPrefs=getApplicationContext().getSharedPreferences("Books",MODE_PRIVATE);
+        editor=shPrefs.edit();
         pager.setAdapter(adapter);
         bnview.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
@@ -254,8 +256,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void savePageNumber(){
-        shPrefs=getApplicationContext().getSharedPreferences("Books",MODE_PRIVATE);
-        editor=shPrefs.edit();
         editor.putInt("pageNumeber",layout.mCurrentPage);
         editor.apply();
     }
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        savePageNumber();
+      //  savePageNumber();
         super.onPause();
     }
 
@@ -327,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             textView= (TextView) findViewById(R.id.first_text);
+            textView.setLineSpacing(2f,1f);
             textView.setVisibility(View.VISIBLE);
             this.loadingDialog = new ProgressDialog(MainActivity.this);
             this.loadingDialog.setCancelable(false);
@@ -372,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
                     views[l].setLayoutParams(textView.getLayoutParams());
                     layouts[l].setLayoutParams(lparams);
                     views[l].setTextSize(textSize);
-                    views[l].setLineSpacing(1f,1f);
+                    views[l].setLineSpacing(2f,1f);
                     views[l].setTypeface(typeface);
                     views[l].setTextColor(Color.parseColor("#000000"));
                     views[l].setBackgroundColor(Color.parseColor("#ffffff"));
