@@ -1,5 +1,5 @@
 package com.application.book;
-
+// Add comments
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
